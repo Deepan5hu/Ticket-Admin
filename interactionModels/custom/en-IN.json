@@ -1,0 +1,390 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "ticket admin",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "hello",
+            "how are you",
+            "say hi world",
+            "say hi",
+            "hi",
+            "say hello world",
+            "say hello"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "MakeBookingIntent",
+          "slots": [
+            {
+              "name": "Type",
+              "type": "TravelType",
+              "samples": [
+                "i want to go from {Type}",
+                "{Type}",
+                "by {Type}"
+              ]
+            },
+            {
+              "name": "NumberOfPeople",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "there will be {NumberOfPeople} people",
+                "for {NumberOfPeople} persons",
+                "for {NumberOfPeople} people",
+                "{NumberOfPeople} people"
+              ]
+            },
+            {
+              "name": "Date",
+              "type": "AMAZON.DATE",
+              "samples": [
+                "i want to travel on {Date}",
+                "{Date}",
+                "on {Date}",
+                "for {Date}"
+              ]
+            },
+            {
+              "name": "Time",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "{Time}",
+                "at {Time} "
+              ]
+            },
+            {
+              "name": "Source",
+              "type": "AMAZON.City",
+              "samples": [
+                "{Source}",
+                "from {Source}"
+              ]
+            },
+            {
+              "name": "Destination",
+              "type": "AMAZON.City",
+              "samples": [
+                "i want to go {Destination}",
+                "{Destination}",
+                "to {Destination}"
+              ]
+            }
+          ],
+          "samples": [
+            "i want to make a booking",
+            "i want to book a {Type} ticket",
+            "i want to book a {Type} ticket for {Date} at {Time} from {Source} to {Destination}",
+            "i want to book ticket for {NumberOfPeople} people",
+            "i want to book a {Type}"
+          ]
+        },
+        {
+          "name": "CancelBookingIntent",
+          "slots": [
+            {
+              "name": "BookingNumber",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "for booking number {BookingNumber}",
+                "booking number {BookingNumber}",
+                "for reservation number {BookingNumber}",
+                "reservation number {BookingNumber}",
+                "for {BookingNumber}",
+                "{BookingNumber}"
+              ]
+            }
+          ],
+          "samples": [
+            "i want to cancel my booking ",
+            "i want to cancel my reservation ",
+            "i want to cancel a booking number {BookingNumber}",
+            "i want to cancel a reservation number {BookingNumber}",
+            "i want to cancel a booking",
+            "i want to cancel a reservation"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "flight"
+              }
+            },
+            {
+              "name": {
+                "value": "train"
+              }
+            }
+          ],
+          "name": "TravelType"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "MakeBookingIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.1090983910509"
+          },
+          "slots": [
+            {
+              "name": "Type",
+              "type": "TravelType",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1090983910509.1527322894209"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.1458850417186.387099824004.842415764029"
+                }
+              ]
+            },
+            {
+              "name": "NumberOfPeople",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1090983910509.1620443354752"
+              }
+            },
+            {
+              "name": "Date",
+              "type": "AMAZON.DATE",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1090983910509.1041351098929"
+              }
+            },
+            {
+              "name": "Time",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1090983910509.650721753425"
+              }
+            },
+            {
+              "name": "Source",
+              "type": "AMAZON.City",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1090983910509.1365241710811"
+              }
+            },
+            {
+              "name": "Destination",
+              "type": "AMAZON.City",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1090983910509.680153857115"
+              }
+            }
+          ]
+        },
+        {
+          "name": "CancelBookingIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "BookingNumber",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": true,
+              "prompts": {
+                "confirmation": "Confirm.Slot.676662422460.1262095201640",
+                "elicitation": "Elicit.Slot.676662422460.1262095201640"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Confirm.Intent.1090983910509",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "you want to book a {Type} ticket for {Date} at {Time} from {Source} to {Destination} ... please confirm"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1090983910509.1620443354752",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "total number of persons you want to book?"
+          },
+          {
+            "type": "PlainText",
+            "value": "how many people?"
+          },
+          {
+            "type": "PlainText",
+            "value": "for how many peoples you want to book?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1090983910509.1041351098929",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "date?"
+          },
+          {
+            "type": "PlainText",
+            "value": "on which date you want to travel?"
+          },
+          {
+            "type": "PlainText",
+            "value": "on which date?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1090983910509.650721753425",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "for what time you want to book ticket?"
+          },
+          {
+            "type": "PlainText",
+            "value": "at which time you want to travel?"
+          },
+          {
+            "type": "PlainText",
+            "value": "at what time?"
+          },
+          {
+            "type": "PlainText",
+            "value": "time?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1090983910509.1365241710811",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "from which city you want to start your journey?"
+          },
+          {
+            "type": "PlainText",
+            "value": "source city?"
+          },
+          {
+            "type": "PlainText",
+            "value": "from where you want to travel?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1090983910509.680153857115",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "your destination?"
+          },
+          {
+            "type": "PlainText",
+            "value": "where you want to go?"
+          },
+          {
+            "type": "PlainText",
+            "value": "which city do you want to go?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1090983910509.1527322894209",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "do you want a flight or train ticket?"
+          },
+          {
+            "type": "PlainText",
+            "value": "flight or train?"
+          },
+          {
+            "type": "PlainText",
+            "value": "by which mode of travel you want to go?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.676662422460.1262095201640",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "please tell your booking number?"
+          },
+          {
+            "type": "PlainText",
+            "value": "what is your booking number?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Slot.676662422460.1262095201640",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "please confirm your booking number {BookingNumber} "
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1458850417186.387099824004.842415764029",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Sorry this mode of travel isn\u0027t available. Only flight and train bookings can be done."
+          }
+        ]
+      }
+    ]
+  },
+  "version": "8"
+}
